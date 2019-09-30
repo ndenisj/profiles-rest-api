@@ -36,7 +36,7 @@ class HelloApiView(APIView):
         if serializer.is_valid():
             name = serializer.validated_data.get('name')
             message = f'Hello {name}'
-            return Response({ 'message': message })
+            return Response({'message': message})
         else:
             return Response(
                 serializer.errors,
@@ -45,15 +45,16 @@ class HelloApiView(APIView):
 
     def put(self, request, pk=None):
         """Handle an Update request"""
-        return Response({ "method": "PUT" })
+        return Response({"method": "PUT"})
 
     def patch(self, request, pk=None):
         """Handle partial update of an object"""
-        return Response({ "method": "PATCH" })
+        return Response({"method": "PATCH"})
 
     def delete(self, request, pk=None):
         """Delete an object"""
-        return Response({ "method": "DELETE" })
+        return Response({"method": "DELETE"})
+
 
 class HelloViewset(viewsets.ViewSet):
     """Test API ViewSet"""
@@ -67,7 +68,7 @@ class HelloViewset(viewsets.ViewSet):
             'Provides more functionality with less code',
         ]
 
-        return Response({ "message": "Hello", "a_viewset": a_viewset })
+        return Response({"message": "Hello", "a_viewset": a_viewset})
 
     def create(self, request):
         """Create a new Hello message"""
@@ -76,7 +77,7 @@ class HelloViewset(viewsets.ViewSet):
         if serializer.is_valid():
             name = serializer.validated_data.get('name')
             message = f'Hello {name}!'
-            return Response( {"message": message} )
+            return Response({"message": message})
         else:
             return Response(
                 serializer.errors,
@@ -85,7 +86,7 @@ class HelloViewset(viewsets.ViewSet):
 
     def retrieve(self, request, pk=None):
         """Handle getting an object by its ID"""
-        return Response( {"http_method": "GET"} )
+        return Response({"http_method": "GET"})
 
     def update(self, request, pk=None):
         """Handle updating an object"""
@@ -97,7 +98,8 @@ class HelloViewset(viewsets.ViewSet):
 
     def destroy(self, request, pk=None):
         """Handle deleting an object"""
-        return Response( {"http_method": "DELETE"} )
+        return Response({"http_method": "DELETE"})
+
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     """Handles creating and updating profiles"""
@@ -108,9 +110,11 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name', 'email')
 
+
 class UserLoginApiView(ObtainAuthToken):
     """Handle creating user authentication tokens"""
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
+
 
 class UserProfileFeedViewSet(viewsets.ModelViewSet):
     """Handle creating, updating and reading pfofile feed items"""
